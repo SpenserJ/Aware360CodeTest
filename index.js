@@ -22,12 +22,31 @@ function fetchNewRecords(callback) {
   }).then(callback);
 }
 
-fetchNewRecords(function (records) {
-  cachedRecords = records;
-  // Save a copy of the records so that we can load it faster next time.
-  fs.writeFile('./records.json', JSON.stringify(records), function (err) {
-    if (err) {
-      return console.error('There was an error saving a local cache of records.', err);
-    }
-  });
+fs.exists('./records.json', function (exists) {
+  if (exists === true) {
+    fs.readFile('./records.json', { encoding: 'utf8' }, function (err, data) {
+      if (err) {
+        return console.error('There was an error reading from ./records.json:', err);
+      }
+      data = JSON.parse(data);
+      dataLoaded(data);
+    });
+  } else {
+    fetchNewRecords(function (records) {
+      // Save a copy of the records so that we can load it faster next time.
+      fs.writeFile('./records.json', JSON.stringify(records), function (err) {
+        if (err) {
+          return console.error('There was an error saving a local cache of records:', err);
+        }
+      });
+
+      // Make use of the data.
+      dataLoaded(records);
+    });
+  }
 });
+
+function dataLoaded(data) {
+  cachedRecords = data;
+  console.log(data);
+}
