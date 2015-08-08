@@ -3,7 +3,15 @@ body {
   color: #000;
 }
 
+h1.title {
+  text-align: center;
+}
+
 .data {
+  margin: 0 auto;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  border-spacing: 0;
+
   tr.header {
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
@@ -12,5 +20,9 @@ body {
   tr.even {}
   tr.odd {
     background: rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 2px 8px;
   }
 }
