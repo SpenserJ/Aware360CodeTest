@@ -12,5 +12,10 @@
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
     "mockaroo": "^0.1.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2"
   }
 }
