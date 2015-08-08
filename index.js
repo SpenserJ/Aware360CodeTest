@@ -1,6 +1,9 @@
 var fs = require('fs')
-  , Mockaroo = require('mockaroo');
+  , Mockaroo = require('mockaroo')
+  , express = require('express')
+  , exphbs = require('express-handlebars');
 
+var app = express();
 var cachedRecords = [];
 
 function fetchNewRecords(callback) {
@@ -50,3 +53,12 @@ function dataLoaded(data) {
   cachedRecords = data;
   console.log(data);
 }
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res) {
+  res.render('home', { records: cachedRecords });
+});
+
+app.listen(4000);

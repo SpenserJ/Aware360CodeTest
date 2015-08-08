@@ -9,6 +9,8 @@
   "author": "Spenser Jones <hello@spenserj.com>",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
     "mockaroo": "^0.1.5"
   }
 }
