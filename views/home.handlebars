@@ -1,7 +1,17 @@
 <h1>Aware360 Coding Test - Spenser Jones</h1>
 <table>
   {{#each records}}
-  <tr>
+  {{#ifIsNthItem nth=10}}
+  <tr class="header">
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Country</th>
+    <th>IP Address</th>
+  </tr>
+  {{/ifIsNthItem}}
+  <tr class="{{evenOddClass}}">
     <td>{{this.id}}</td>
     <td>{{this.first_name}}</td>
     <td>{{this.last_name}}</td>

@@ -51,10 +51,24 @@ fs.exists('./records.json', function (exists) {
 
 function dataLoaded(data) {
   cachedRecords = data;
-  console.log(data);
 }
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+var hbs = exphbs({
+  defaultLayout: 'main',
+  helpers: {
+    ifIsNthItem: function (options) {
+      if (options.data.index % options.hash.nth === 0) {
+        return options.fn(this);
+      }
+    },
+
+    evenOddClass: function (options) {
+      return (options.data.index % 2) ? 'odd' : 'even';
+    },
+  }
+});
+
+app.engine('handlebars', hbs);
 app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
