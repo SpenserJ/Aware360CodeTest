@@ -71,6 +71,9 @@ var hbs = exphbs({
 app.engine('handlebars', hbs);
 app.set('view engine', 'handlebars');
 
+// Serve static files out of ./dist/
+app.use(express.static('dist'));
+
 app.get('/', function (req, res) {
   res.render('home', { records: cachedRecords });
 });
